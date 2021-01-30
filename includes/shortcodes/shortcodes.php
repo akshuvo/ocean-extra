@@ -186,14 +186,14 @@ if ( ! function_exists( 'oceanwp_login_shortcode' ) ) {
 			'logout_redirect' 	=> '',
 		), $atts ) );
 
-		// Custom login url
+		// Custom login url.
 		if ( ! empty( $custom_url ) ) {
 			$login_url = $custom_url;
 		} else {
 			$login_url = wp_login_url();
 		}
 
-		// Logout redirect
+		// Logout redirect.
 		if ( ! empty( $logout_redirect ) ) {
 			$current = get_permalink();
 			if ( 'current' == $logout_redirect
@@ -206,19 +206,15 @@ if ( ! function_exists( 'oceanwp_login_shortcode' ) ) {
 			$logout_redirect = home_url( '/' );
 		}
 
-		// Logout link
-		if ( class_exists( 'WooCommerce' ) ) {
-			$logout_url = wc_logout_url( $logout_redirect );
-		} else {
-			$logout_url = wp_logout_url( $logout_redirect );
-		}
+		// Logout link. 
+		$logout_url = wp_logout_url( $logout_redirect );
 
-		// Logged in link
+		// Logged in link.
 		if ( is_user_logged_in() ) {
 			return '<a href="'. esc_url( $logout_url ) .'" title="'. esc_attr( $logout_text ) .'" class="oceanwp-logout">'. strip_tags( $logout_text ) .'</a>';
 		}
 
-		// Logged out link
+		// Logged out link.
 		else {
 			return '<a href="'. esc_url( $login_url ) .'" title="'. esc_attr( $login_text ) .'" class="oceanwp-login" target="_'. esc_attr( $target ) .'">'. strip_tags( $login_text ) .'</a>';
 		}
@@ -229,7 +225,7 @@ if ( ! function_exists( 'oceanwp_login_shortcode' ) ) {
 add_shortcode( 'oceanwp_login', 'oceanwp_login_shortcode' );
 
 /**
- * Login/logout link
+ * Current User Shortcode
  *
  * @since 1.2.1
  */
