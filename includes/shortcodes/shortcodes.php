@@ -729,3 +729,31 @@ if ( ! function_exists( 'oceanwp_breadcrumb_shortcode' ) ) {
 
 }
 add_shortcode( 'oceanwp_breadcrumb', 'oceanwp_breadcrumb_shortcode' );
+
+/**
+ * Last Modified Date Shortcode
+ * 
+ * @since 1.7.1
+ */
+if ( ! function_exists( 'oceanwp_last_modified_shortcode' ) ) {
+	function oceanwp_last_modified_shortcode( $atts ) {
+
+		// Attrbibutes. 
+		extract( shortcode_atts( array(
+			'olm_text'          => esc_html__( 'Last Updated on:', 'ocean-extra' ),
+			'olm_date_format'   => '',
+		), $atts ) );
+
+		if ( ! empty( $olm_date_format ) ) {
+			$olm_date = get_the_modified_date( $olm_date_format );
+		} else {
+			$olm_date = get_the_modified_date( 'F j, Y' );
+		}
+
+		$olm_shortcode = '<p class="ocean-last-modified">' . esc_html( $olm_text . ' ' . $olm_date ) . '</p>';
+
+		// Return.
+		return $olm_shortcode;
+	}
+}
+add_shortcode( 'oceanwp_last_modified', 'oceanwp_last_modified_shortcode' );

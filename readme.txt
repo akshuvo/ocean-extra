@@ -34,7 +34,8 @@ This plugin will only function with the [OceanWP](https://oceanwp.org/) theme.
 == Changelog ==
 
 = 1.7.1 =
-- Fixed: oceanwp_login shortcode: logout '404 page not found' error when WooCommerce enabled.
+- Fixed: [oceanwp_login] shortcode: logout '404 page not found' error when WooCommerce enabled.
+- Added: New shortcode to display the modified date on posts and pages: [oceanwp_last_modified]
 
 = 1.7.0 =
 - Fixed: PHP 8 compatibility with demo import.
