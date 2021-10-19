@@ -987,6 +987,7 @@ if ( ! class_exists( 'OceanWP_Demos' ) ) {
 
 			// Get selected demo
 			$demo = $_GET['demo_name'];
+			$demo_has_type = $_GET['demo_type'];
 
 			// Get required plugins
 			$plugins = $demo_data[$demo][ 'required_plugins' ];
@@ -1028,7 +1029,7 @@ if ( ! class_exists( 'OceanWP_Demos' ) ) {
 
 			<form method="post" id="owp-demo-import-form">
 
-				<input id="owp_import_demo" type="hidden" name="owp_import_demo" value="<?php echo esc_attr( $demo ); ?>" />
+				<input id="owp_import_demo" type="hidden" name="owp_import_demo" value="<?php echo esc_attr( $demo ); ?>" data-demo-type="<?php echo esc_attr( $demo_has_type ); ?>" />
 
 				<div class="owp-demo-import-form-types">
 
@@ -1408,16 +1409,14 @@ if ( ! class_exists( 'OceanWP_Demos' ) ) {
 			if ( $_POST['owp_import_is_xml'] === 'true' ) {
 
 				// Get the selected demo
-				$demo_type 			= $_POST['owp_import_demo'];
-
-				$demo_has_type = 'elementor';
+				$demo_type    = $_POST['owp_import_demo'];
+				$demo_builder = $_POST['owp_import_demo_type'];
 
 				// Get demos data
 				$demos = self::get_demos_data();
 				$demo_data = $demos['elementor'];
 				if ( ! empty( $demos['gutenberg'] ) ) {
 					$demo_data = array_merge( $demo_data, $demos['gutenberg'] );
-					$demo_has_type = 'gutenberg';
 				}
 				$demo = $demo_data[ $demo_type ];
 
@@ -1530,13 +1529,14 @@ if ( ! class_exists( 'OceanWP_Demos' ) ) {
 					update_option( 'posts_per_page', $posts_to_show );
 				}
 
-				if ( 'gutenberg' === $demo_has_type ) {
+				if ( 'elementor' !== $demo_builder ) {
 
 					$page_ids = get_all_page_ids();
 
 					foreach ( $page_ids as $id ) {
-						delete_post_meta( $id, '_elementor_edit_mode' );
+						delete_post_meta( $id, '_elementor_edit_mode', '' );
 					}
+
 				}
 			}
 
