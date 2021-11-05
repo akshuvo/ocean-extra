@@ -3,7 +3,7 @@ Contributors: oceanwp, apprimit, wpfleek
 Tags: widgets, meta box, metaboxes, metabox, oceanwp
 Requires at least: 5.3
 Tested up to: 5.8.1
-Stable tag: 1.8.3
+Stable tag: 1.8.4
 Requires PHP: 7.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -32,6 +32,9 @@ This plugin will only function with the [OceanWP](https://oceanwp.org/) theme.
 3. Custom CSS.
 
 == Changelog ==
+
+= 1.8.4 =
+- Added: Enabled support for php code editor with Gutenberg support for my library template.
 
 = 1.8.3 =
 - Added: Codes for the updated version of Ocean Pro Demos plugin.
