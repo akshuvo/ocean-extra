@@ -719,7 +719,7 @@ if (!class_exists('Ocean_Extra_Theme_Wizard')):
                 update_option('blogname', esc_html($site_title));
 
             if (isset($_POST['ocean-tagline']))
-                $site_tagline = sanitize_hex_color( $_POST['ocean-tagline'] );
+                $site_tagline = wp_filter_nohtml_kses( $_POST['ocean-tagline'] );
                 update_option('blogdescription', esc_html($site_tagline));
 
             if (isset($_POST['ocean-favicon']))
