@@ -520,7 +520,7 @@ if ( ! class_exists( 'Ocean_Extra_Social_Widget' ) ) {
 				// Loop through social services to display inputs.
 				foreach( $display_services as $key => $val ) {
 					$url  = ! empty( $display_services[$key]['url'] ) ? $display_services[$key]['url'] : null;
-					$name = $social_services_array[$key]['name'];
+					$name = $social_services_array[$key]['name'] ?? null;
 					?>
 
 					<li id="<?php echo esc_attr( $field_id_services ); ?>_0<?php echo esc_attr( $key ); ?>">
@@ -546,7 +546,7 @@ if ( ! class_exists( 'Ocean_Extra_Social_Widget' ) ) {
 		 */
 		public function colors( $args, $instance ) {
 			// get the widget ID.
-			$id = $args['widget_id'];
+			$id = $args['widget_id'] ?? null;
 
 			// Define vars.
 			$bg_color           = isset( $instance['bg_color'] ) ? sanitize_hex_color( $instance['bg_color'] ) : '';
